@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 
 //Models
 const { Restaurant } = require('../models/restaurant.model');
+const { Meal } = require('../models/meal.model');
 
 // utils
 const { catchAsync } = require('../utils/catchAsync');
@@ -11,7 +12,9 @@ const { catchAsync } = require('../utils/catchAsync');
 dotenv.config({ path: './config.env' });
 
 const getAllRestaurant = catchAsync(async (req, res, next) => {
-  const restaurants = await Restaurant.findAll({ where: { status: 'active' } });
+  const restaurants = await Restaurant.findAll({
+    where: { status: 'active' },
+  });
 
   res.status(200).json({
     restaurants,
